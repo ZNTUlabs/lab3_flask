@@ -9,13 +9,25 @@ GPIO.setmode(GPIO.BOARD)
 arr = [7,8,18,16,15,13,12,11]
 
 @app.route('/')
-def hello_world():
-    for i in arr:
-        GPIO.setup(i, GPIO.OUT)
-        GPIO.output(i, True)
-        time.sleep(0.3)
-    for i in arr:
-        GPIO.setup(i, GPIO.OUT)
-        GPIO.output(i, False)
-        time.sleep(0.3)
-    return 'Hello, World!'
+def index():
+    return "Hello, it's programm to use Raspberry outputs pins!"
+
+
+@app.route('/pin/on/<int:pin_id>')
+def pin_on(pin_id):
+    # 
+	if pin_id in arr:
+		GPIO.output(pin_id, True)
+		return 'Pin ID=%d was turn ON' % pin_id
+	else:
+		return 'Pin wrong ID=%d for pin' % pin_id
+
+
+@app.route('/pin/off/<int:pin_id>')
+def pin_off(pin_id):
+    # 
+	if pin_id in arr:
+		GPIO.output(pin_id, False)
+		return 'Pin ID=%d was turn OFF' % pin_id
+	else:
+		return 'Pin wrong ID=%d for pin' % pin_id
