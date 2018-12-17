@@ -34,3 +34,12 @@ def pin_off(pin_id):
 		return 'Pin ID=%d was turn OFF' % pin_id
 	else:
 		return 'Pin wrong ID=%d for pin' % pin_id
+
+@app.route('/pin/on/<int:pin_id>')
+def pin_off(pin_id):
+    # 
+	if pin_id in arr:
+		GPIO.output(pin_id, False)
+		return 'Pin ID=%d was turn OFF' % pin_id
+	else:
+		return 'Pin wrong ID=%d for pin' % pin_id
