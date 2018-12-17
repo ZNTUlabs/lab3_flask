@@ -35,11 +35,18 @@ def pin_off(pin_id):
 	else:
 		return 'Pin wrong ID=%d for pin' % pin_id
 
-@app.route('/pin/on/<int:pin_id>')
-def pin_off(pin_id):
+
+@app.route('/pin/on/all')
+def all_pin_on():
     # 
-	if pin_id in arr:
-		GPIO.output(pin_id, False)
-		return 'Pin ID=%d was turn OFF' % pin_id
-	else:
-		return 'Pin wrong ID=%d for pin' % pin_id
+	for pin in arr:
+		GPIO.output(pin, True)
+	return "All pins was turn ON"
+
+
+@app.route('/pin/off/all')
+def all_pin_off():
+    # 
+	for pin in arr:
+		GPIO.output(pin, False)
+	return "All pins was turn OFF"
