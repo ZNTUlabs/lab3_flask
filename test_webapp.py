@@ -69,7 +69,7 @@ class TestApiMethods(unittest.TestCase):
 		self.assertEqual(r.status_code, 200)
 
 	def test_pin_off_7(self):
-		r = requests.get(self.getServerUrl() + '/pin/ooffn/12')
+		r = requests.get(self.getServerUrl() + '/pin/off/12')
 		self.assertEqual(r.status_code, 200)
 
 	def test_pin_off_8(self):
