@@ -1,5 +1,8 @@
-from flask import Flask
+from flask import Flask, jsonify
 app = Flask(__name__)
+
+from flask_cors import CORS
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 import RPi.GPIO as GPIO
 import time
@@ -50,3 +53,40 @@ def all_pin_off():
 	for pin in arr:
 		GPIO.output(pin, False)
 	return "All pins was turn OFF"
+
+#  API
+
+@app.route('/api/pin/on/<int:pin_id>')
+def pin_on(pin_id):
+    # 
+	if pin_id in arr:
+		GPIO.output(pin_id, True)
+		return jsonify(data='Pin ID=%d was turn ON' % pin_id)
+	else:
+		return jsonify(data='Pin wrong ID=%d for pin' % pin_id)
+
+
+@app.route('/api/pin/off/<int:pin_id>')
+def pin_off(pin_id):
+    # 
+	if pin_id in arr:
+		GPIO.output(pin_id, False)
+		return jsonify(data='Pin ID=%d was turn OFF' % pin_id)
+	else:
+		return jsonify(data='Pin wrong ID=%d for pin' % pin_id)
+
+
+@app.route('/api/pin/on/all')
+def all_pin_on():
+    # 
+	for pin in arr:
+		GPIO.output(pin, True)
+	return jsonify(data="All pins was turn ON")
+
+
+@app.route('/api/pin/off/all')
+def all_pin_off():
+    # 
+	for pin in arr:
+		GPIO.output(pin, False)
+	return jsonify(data="All pins was turn OFF")
