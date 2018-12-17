@@ -57,7 +57,7 @@ def all_pin_off():
 #  API
 
 @app.route('/api/pin/on/<int:pin_id>')
-def pin_on(pin_id):
+def api_pin_on(pin_id):
     # 
 	if pin_id in arr:
 		GPIO.output(pin_id, True)
@@ -67,7 +67,7 @@ def pin_on(pin_id):
 
 
 @app.route('/api/pin/off/<int:pin_id>')
-def pin_off(pin_id):
+def api_pin_off(pin_id):
     # 
 	if pin_id in arr:
 		GPIO.output(pin_id, False)
@@ -77,7 +77,7 @@ def pin_off(pin_id):
 
 
 @app.route('/api/pin/on/all')
-def all_pin_on():
+def api_all_pin_on():
     # 
 	for pin in arr:
 		GPIO.output(pin, True)
@@ -85,7 +85,7 @@ def all_pin_on():
 
 
 @app.route('/api/pin/off/all')
-def all_pin_off():
+def api_all_pin_off():
     # 
 	for pin in arr:
 		GPIO.output(pin, False)
