@@ -1,10 +1,9 @@
-import os
-import tempfile
+import unittest
 
-import pytest
+class TestStringMethods(unittest.TestCase):
 
-@pytest.fixture
-def switch_on_all(client):
-	rv = client.get('/api/pin/on/all')
-	data = json.loads(rv.data)
-	assert assert_equal(data['data'], "All pins was turn ON")
+    def test_upper(self):
+        self.assertEqual('foo'.upper(), 'FOO')
+
+if __name__ == '__main__':
+    unittest.main()
