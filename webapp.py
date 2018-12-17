@@ -54,7 +54,7 @@ def all_pin_off():
 		GPIO.output(pin, False)
 	return "All pins was turn OFF"
 
-#  API
+#  *****************  API *********************
 
 @app.route('/api/pin/on/<int:pin_id>')
 def api_pin_on(pin_id):
