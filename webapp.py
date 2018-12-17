@@ -7,6 +7,9 @@ import time
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
 arr = [7,8,18,16,15,13,12,11]
+for pin in arr:
+	GPIO.setup(pin, GPIO.OUT)
+
 
 @app.route('/')
 def index():
